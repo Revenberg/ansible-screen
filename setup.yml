@@ -1,0 +1,31 @@
+---
+- name: Hello Ansible - quick start
+  hosts: rpi
+  become_user: root
+  become: yes
+
+  tasks:    
+    - name: Update apt-get cache
+      apt: >
+        update_cache=yes
+        cache_valid_time=360
+    
+    - name: Update all packages to the latest version
+      apt: > 
+        upgrade=yes
+
+    - name: Copy file  
+      copy:
+        src: ./LCD-show.tar.gz
+        dest: /home/pi/LCD-show.tar.gz
+        owner: pi
+        group: pi
+        mode: 0644
+  
+    - name: untar
+      unarchive:
+        src: /home/pi/LCD-show.tar.gz
+        dest: /home/pi
+
+    - name: activate
+      shell: /home/pi/LCD-show/LCD35-show
