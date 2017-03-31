@@ -14,18 +14,22 @@
       apt: > 
         upgrade=yes
 
-    - name: Copy file  
+    - name: Copy file LCD-show.tar.gz
       copy:
         src: ./LCD-show.tar.gz
         dest: /home/pi/LCD-show.tar.gz
         owner: pi
         group: pi
         mode: 0644
-  
+    
     - name: untar
       unarchive:
-        src: /home/pi/LCD-show.tar.gz
+        src: ./LCD-show.tar.gz
+        creates: /home/pi/LCD-show/LCD35-show
         dest: /home/pi
 
     - name: activate
-      shell: /home/pi/LCD-show/LCD35-show
+      shell: ./LCD35-show
+      args:
+        chdir: /home/pi/LCD-show/
+        creates: /etc/X11/xorg.conf.d
