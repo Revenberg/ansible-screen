@@ -8,12 +8,15 @@
     - name: Update apt-get cache
       apt: >
         update_cache=yes
-        cache_valid_time=360
+        cache_valid_time=3600
     
     - name: Update all packages to the latest version
       apt: > 
         upgrade=yes
-
+    - name: Update repositories cache and install "php5-common" package
+      apt: 
+        name: lightdm
+        
     - name: Copy file LCD-show.tar.gz
       copy:
         src: ./LCD-show.tar.gz
