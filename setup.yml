@@ -3,8 +3,6 @@
   hosts: rpi
   become_user: root
   become: yes
-  vars:
-    DISPLAY=:0.0
       
   tasks:    
     - name: Update apt-get cache
@@ -57,3 +55,5 @@
         src: ./99-fbdev.conf
         dest: /usr/share/X11/xorg.conf.d/99-fbdev.conf
     
+    - name: Display
+      command: export DISPLAY=:0.0
