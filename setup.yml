@@ -13,10 +13,19 @@
     - name: Update all packages to the latest version
       apt: > 
         upgrade=yes
-    - name: Update repositories cache and install "php5-common" package
+        
+    - name: Install "lightdm" package nodig?
       apt: 
         name: lightdm
-        
+    
+    - name: Install "LXDE" package 
+      apt: 
+        name: LXDE
+    
+    - name: Install "xinit" package 
+      apt: 
+        name: xinit
+       
     - name: Copy file LCD-show.tar.gz
       copy:
         src: ./LCD-show.tar.gz
