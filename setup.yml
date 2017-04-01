@@ -25,6 +25,10 @@
     - name: Install "xinit" package 
       apt: 
         name: xinit
+                
+    - name: Install "xserver-xorg-video-fbdev" package 
+      apt: 
+        name: xserver-xorg-video-fbdev
        
     - name: Copy file LCD-show.tar.gz
       copy:
