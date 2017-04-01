@@ -24,12 +24,8 @@
     
     - name: Install "xinit" package 
       apt: 
-        name: xinit
-                
-    - name: Install "xserver-xorg-video-fbdev" package 
-      apt: 
-        name: xserver-xorg-video-fbdev
-       
+        name: xinit          
+        
     - name: Copy file LCD-show.tar.gz
       copy:
         src: ./LCD-show.tar.gz
@@ -49,3 +45,13 @@
       args:
         chdir: /home/pi/LCD-show/
         creates: /etc/X11/xorg.conf.d
+
+    - name: Install "xserver-xorg-video-fbdev" package 
+      apt: 
+        name: xserver-xorg-video-fbdev
+       
+    - name: Copy file 99-fbdev.conf
+      copy:
+        src: ./99-fbdev.conf
+        dest: /usr/share/X11/xorg.conf.d/99-fbdev.conf
+    
