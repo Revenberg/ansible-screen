@@ -47,13 +47,6 @@
       become_user: root
       become: yes
 
-    - name: Copy file autostart
-      copy:
-        src: ./autostart
-        dest: /etc/xdg/lxsession/LXDE/autostart 
-      become_user: root
-      become: yes
-
     - name: set Display
       lineinfile:
         dest: /home/pi/.bashrc
