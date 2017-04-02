@@ -39,6 +39,8 @@
     - name: Install "xserver-xorg-video-fbdev" package 
       apt: 
         name: xserver-xorg-video-fbdev
+      become_user: root
+      become: yes
        
     - name: Copy file 99-fbdev.conf
       copy:
