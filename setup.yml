@@ -47,14 +47,7 @@
       become_user: root
       become: yes
 
-   
-    - name: Copy file display
-      copy:
-        src: ./display.sh
-        dest: /home/pi/display.sh
-        mode: 0755
-
     - name: set Display
-      shell: ./display.sh
-      args:
-        chdir: /home/pi
+      lineinfile:
+        dest: /home/pi/.bashrc
+        line: 'export DISPLAY=:0.0'
