@@ -52,6 +52,7 @@
       copy:
         src: ./display.sh
         dest: /home/pi/display.sh
+        mode: 0755
 
     - name: set Display
       shell: ./display.sh
