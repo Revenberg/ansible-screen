@@ -51,3 +51,10 @@
       lineinfile:
         dest: /home/pi/.bashrc
         line: 'export DISPLAY=:0.0'
+        
+    - name: insert/update configuration using config.txt
+      blockinfile:
+        block: "{{ lookup('file', './config.txt') }}"
+        dest: "/boot/config.txt"
+      become_user: root
+      become: yes
