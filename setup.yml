@@ -1,7 +1,7 @@
 ---
 - name: Hello Ansible - quick start
   hosts: rpi
-  become_user: root
+  become_user: pi
   become: yes
       
   tasks:    
@@ -9,30 +9,20 @@
       apt: >
         update_cache=yes
         cache_valid_time=3600
-    
+      become_user: root
+      become: yes   
+ 
     - name: Update all packages to the latest version
       apt: > 
-        upgrade=yes
-        
-    - name: Install "lightdm" package nodig?
-      apt: 
-        name: lightdm
-    
-    - name: Install "LXDE" package 
-      apt: 
-        name: LXDE
-    
-    - name: Install "xinit" package 
-      apt: 
-        name: xinit          
-        
+        upgrade=yes      
+      become_user: root
+      become: yes
+
+
     - name: Copy file LCD-show.tar.gz
       copy:
         src: ./LCD-show.tar.gz
         dest: /home/pi/LCD-show.tar.gz
-        owner: pi
-        group: pi
-        mode: 0644
     
     - name: untar
       unarchive:
@@ -54,6 +44,16 @@
       copy:
         src: ./99-fbdev.conf
         dest: /usr/share/X11/xorg.conf.d/99-fbdev.conf
-    
-    - name: Display
-      command: export DISPLAY=:0.0
+      become_user: root
+      become: yes
+
+   
+    - name: Copy file display
+      copy:
+        src: ./display.sh
+        dest: /home/pi/display.sh
+
+    - name: set Display
+      shell: ./display.sh
+      args:
+        chdir: /home/pi
