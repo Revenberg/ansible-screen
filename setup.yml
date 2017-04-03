@@ -30,25 +30,12 @@
         creates: /home/pi/LCD-show/LCD35-show
         dest: /home/pi
 
-    - name: activate
-      shell: ./LCD35-show
-      args:
-        chdir: /home/pi/LCD-show/
-        creates: /etc/X11/xorg.conf.d
-
     - name: Install "xserver-xorg-video-fbdev" package 
       apt: 
         name: xserver-xorg-video-fbdev
       become_user: root
       become: yes
        
-    - name: Copy file 99-fbdev.conf
-      copy:
-        src: ./99-fbdev.conf
-        dest: /usr/share/X11/xorg.conf.d/99-fbdev.conf
-      become_user: root
-      become: yes
-
     - name: set Display
       lineinfile:
         dest: /home/pi/.bashrc
@@ -60,3 +47,19 @@
         dest: "/boot/config.txt"
       become_user: root
       become: yes
+
+    - name: activate
+      shell: ./LCD35-show
+      args:
+        chdir: /home/pi/LCD-show/
+        creates: /etc/X11/xorg.conf.d
+      become_user: root
+      become: yes
+
+    - name: Copy file 99-fbdev.conf
+      copy:
+        src: ./99-fbdev.conf
+        dest: /usr/share/X11/xorg.conf.d/99-fbdev.conf
+      become_user: root
+      become: yes
+
