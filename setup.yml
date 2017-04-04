@@ -30,11 +30,32 @@
         creates: /home/pi/LCD-show/LCD35-show
         dest: /home/pi
 
-    - name: Install "xserver-xorg-video-fbdev" package 
-      apt: 
+    - name: Install "xserver-xorg" package
+      apt:
+        name: xserver-xorg
+      become_user: root
+      become: yes
+    - name: Install "xinit" package
+      apt:
+        name: xinit 
+      become_user: root
+      become: yes
+    - name: Install "xserver-xorg-video-fbdev" package
+      apt:
         name: xserver-xorg-video-fbdev
       become_user: root
       become: yes
+    - name: Install "lxde" package
+      apt:
+        name: lxde
+      become_user: root
+      become: yes
+    - name: Install "lxde-common" package
+      apt:
+        name: lxde-common
+      become_user: root
+      become: yes
+
        
     - name: set Display
       lineinfile:
