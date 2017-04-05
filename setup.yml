@@ -83,4 +83,12 @@
         dest: /usr/share/X11/xorg.conf.d/99-fbdev.conf
       become_user: root
       become: yes
+      
+    - name: Copy file 99-calibration.conf 
+      copy:
+        src: ./99-calibration.conf 
+        dest: /etc/X11/xorg.conf.d/99-calibration.conf
+      become_user: root
+      become: yes
+      
 
