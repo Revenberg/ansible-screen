@@ -55,6 +55,11 @@
         name: lxde-common
       become_user: root
       become: yes
+    - name: Install "xinput-calibrator" package
+      apt:
+        name: xinput-calibrator
+      become_user: root
+      become: yes
 
        
     - name: set Display
