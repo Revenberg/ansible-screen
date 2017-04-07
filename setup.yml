@@ -89,10 +89,17 @@
       become_user: root
       become: yes
       
-    - name: Copy file 99-calibration.conf 
+    - name: Copy file 99-calibration.conf 1
       copy:
         src: ./99-calibration.conf 
         dest: /etc/X11/xorg.conf.d/99-calibration.conf
+      become_user: root
+      become: yes
+      
+    - name: Copy file 99-calibration.conf 2
+      copy:
+        src: ./99-calibration.conf 
+        dest: /etc/X11/xorg.conf.d/99-cahare/X11/99-calibration.conf
       become_user: root
       become: yes
       
